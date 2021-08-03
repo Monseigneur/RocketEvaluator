@@ -8,16 +8,11 @@ namespace RocketEvaluator
         {
             Console.WriteLine("Hello World!");
 
-            Rocket r = new Rocket("Juno", 1, 4, 1);
+            Rocket r = new Rocket(RocketType.Juno);
+            Rocket r2 = new Rocket(RocketType.Soyuz);
 
             Console.WriteLine(r);
+            Console.WriteLine(r2);
         }
     }
 }
-
-
-// Rockets      Mass    Thrust
-// Juno         1       4
-// Atlas        4       27
-// Soyuz        9       80
-// Saturn       20      200
