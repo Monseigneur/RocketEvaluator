@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Simple program to validate rockets used in the Leaving Earth board game.
+/// </summary>
 namespace RocketEvaluator
 {
     class Program
