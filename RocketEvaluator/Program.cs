@@ -7,12 +7,11 @@ namespace RocketEvaluator
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            Rocket r = new Rocket("Juno", 1, 4, 1);
+
+            Console.WriteLine(r);
         }
-    }
-
-    class Rocket
-    {
-
     }
 }
 
