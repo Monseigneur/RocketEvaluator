@@ -11,8 +11,8 @@ namespace RocketEvaluator
         {
             Console.WriteLine("Hello World!");
 
-            Rocket r = new Rocket(RocketType.Juno);
-            Rocket r2 = new Rocket(RocketType.Soyuz);
+            Rocket r = new(RocketType.Juno);
+            Rocket r2 = new(RocketType.Soyuz);
 
             Console.WriteLine(r);
             Console.WriteLine(r2);

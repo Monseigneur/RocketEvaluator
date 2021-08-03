@@ -24,10 +24,10 @@ namespace RocketEvaluator
 
         private static readonly Dictionary<RocketType, RocketInfo> rocket_data = new()
         {
-            { RocketType.Juno, new RocketInfo{Mass=1, Thrust=4, Cost=1 } },
-            { RocketType.Atlas, new RocketInfo{Mass=4, Thrust=27, Cost=5} },
-            { RocketType.Soyuz, new RocketInfo{Mass=9, Thrust=80, Cost=8} },
-            { RocketType.Saturn, new RocketInfo{Mass=20, Thrust=200, Cost=15} }
+            { RocketType.Juno, new RocketInfo { Mass = 1, Thrust = 4, Cost = 1 } },
+            { RocketType.Atlas, new RocketInfo { Mass = 4, Thrust = 27, Cost = 5 } },
+            { RocketType.Soyuz, new RocketInfo { Mass = 9, Thrust = 80, Cost = 8 } },
+            { RocketType.Saturn, new RocketInfo { Mass = 20, Thrust = 200, Cost = 15 } }
         };
 
         public string Name { get; }
