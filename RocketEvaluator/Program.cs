@@ -48,7 +48,7 @@ namespace RocketEvaluator
 
             List<Rocket> available_rockets = s.GetAvailableRockets();
 
-            for (int mask = 1; mask <= (1 << available_rockets.Count); mask++)
+            for (int mask = 1; mask <= (1 << available_rockets.Count) - 1; mask++)
             {
                 List<Rocket> subset = GetRocketSubset(available_rockets, mask);
                 int thrust = GetRocketThrust(subset);

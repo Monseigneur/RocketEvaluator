@@ -31,13 +31,13 @@ namespace RocketEvaluator
 
         private bool ChangeRocketState(List<Rocket> rockets, bool new_state)
         {
-            var changed_indexes = new List<int>();
+            var changed_indexes = new HashSet<int>();
 
             foreach (Rocket r in rockets)
             {
                 for (int i = 0; i < _rockets.Count; i++)
                 {
-                    if ((_rocket_available[i] != new_state) && (_rockets[i].Type == r.Type))
+                    if ((_rocket_available[i] != new_state) && !changed_indexes.Contains(i) && (_rockets[i].Type == r.Type))
                     {
                         changed_indexes.Add(i);
 
