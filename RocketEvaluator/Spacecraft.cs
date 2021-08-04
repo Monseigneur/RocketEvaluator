@@ -10,37 +10,51 @@ namespace RocketEvaluator
     {
         private readonly List<Rocket> _rockets;
         private List<bool> _rocket_available;
+        private int _base_mass;
 
-        public Spacecraft(List<Rocket> rockets)
+        public Spacecraft(List<Rocket> rockets, int base_mass)
         {
             _rockets = rockets;
             _rocket_available = Enumerable.Repeat(true, _rockets.Count).ToList();
+            _base_mass = base_mass;
         }
 
-        public bool UseRockets(List<RocketType> rockets)
+        public bool UseRockets(List<Rocket> rockets)
         {
-            var used_indexes = new List<int>();
+            return ChangeRocketState(rockets, false);
+        }
 
-            foreach (RocketType r in rockets)
+        public bool ResetRockets(List<Rocket> rockets)
+        {
+            return ChangeRocketState(rockets, true);
+        }
+
+        private bool ChangeRocketState(List<Rocket> rockets, bool new_state)
+        {
+            var changed_indexes = new List<int>();
+
+            foreach (Rocket r in rockets)
             {
                 for (int i = 0; i < _rockets.Count; i++)
                 {
-                    if (_rocket_available[i] && (_rockets[i].Type == r))
+                    if ((_rocket_available[i] != new_state) && (_rockets[i].Type == r.Type))
                     {
-                        used_indexes.Add(i);
+                        changed_indexes.Add(i);
+
+                        break;
                     }
                 }
             }
 
-            if (used_indexes.Count == rockets.Count)
+            if (changed_indexes.Count == rockets.Count)
             {
-                foreach (int index in used_indexes)
+                foreach (int index in changed_indexes)
                 {
-                    _rocket_available[index] = false;
+                    _rocket_available[index] = new_state;
                 }
             }
 
-            return used_indexes.Count == rockets.Count;
+            return changed_indexes.Count == rockets.Count;
         }
 
         public List<Rocket> GetAvailableRockets()
@@ -60,7 +74,7 @@ namespace RocketEvaluator
 
         public int RocketMass()
         {
-            int mass = 0;
+            int mass = _base_mass;
 
             for (int i = 0; i < _rockets.Count; i++)
             {
@@ -90,7 +104,7 @@ namespace RocketEvaluator
 
         public override string ToString()
         {
-            string str = "Craft: mass: " + RocketMass() + ", thrust: " + RocketThrust() + ", [";
+            string str = "Craft: mass: " + RocketMass() + " (base: " + _base_mass + "), thrust: " + RocketThrust() + ", [";
 
             for (int i = 0; i < _rockets.Count; i++)
             {
