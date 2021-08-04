@@ -13,6 +13,27 @@ namespace RocketEvaluator
         Soyuz,
         Saturn
     }
+
+    public static class RocketTypeExtensions
+    {
+        public static string ShortName(this RocketType r)
+        {
+            switch (r)
+            {
+                case RocketType.Juno:
+                    return "J";
+                case RocketType.Atlas:
+                    return "A";
+                case RocketType.Soyuz:
+                    return "Y";
+                case RocketType.Saturn:
+                    return "S";
+                default:
+                    return "x";
+            }
+        }
+    }
+
     class Rocket
     {
         private class RocketInfo
@@ -30,7 +51,7 @@ namespace RocketEvaluator
             { RocketType.Saturn, new RocketInfo { Mass = 20, Thrust = 200, Cost = 15 } }
         };
 
-        public string Name { get; }
+        public RocketType Type { get; }
         public int Mass { get; }
         public int Thrust { get; }
         public int Cost { get; }
@@ -39,7 +60,7 @@ namespace RocketEvaluator
         {
             var rocket_info = rocket_data[type];
 
-            Name = type.ToString("G");
+            Type = type;
             Mass = rocket_info.Mass;
             Thrust = rocket_info.Thrust;
             Cost = rocket_info.Cost;
@@ -47,7 +68,7 @@ namespace RocketEvaluator
 
         public override string ToString()
         {
-            return "{" + Name + ": Mass: " + Mass + ", Thrust: " + Thrust + ", Cost: " + Cost + "}";
+            return "{" + Type + ": Mass: " + Mass + ", Thrust: " + Thrust + ", Cost: " + Cost + "}";
         }
     }
 }
