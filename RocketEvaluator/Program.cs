@@ -13,23 +13,34 @@ namespace RocketEvaluator
             Rocket r = new(RocketType.Soyuz);
             Rocket r2 = new(RocketType.Soyuz);
 
-            Spacecraft s = new(new List<Rocket> { r, r2 }, 8);
+            Spacecraft c = new(new List<Rocket> { r, r2 }, 8);
 
-            Console.WriteLine(s);
+            Console.WriteLine(c);
 
-            s.UseRockets(new List<Rocket> { r });
+            c.UseRockets(new List<Rocket> { r });
 
-            Console.WriteLine(s);
+            Console.WriteLine(c);
 
-            s.ResetRockets(new List<Rocket> { r });
+            c.ResetRockets(new List<Rocket> { r });
 
-            Console.WriteLine(s);
+            Console.WriteLine(c);
 
             List<int> maneuvers = new() { 3, 5 };
 
-            bool result = Evaluate(s, maneuvers, 0);
+            bool result = Evaluate(c, maneuvers, 0);
 
-            Console.WriteLine("Spacecraft " + s + " can do maneuver: " + result);
+            Console.WriteLine("Spacecraft " + c + " can do maneuver: " + result);
+
+            // To Mercury
+            Rocket j = new(RocketType.Juno);
+            Rocket a = new(RocketType.Atlas);
+            Rocket y = new(RocketType.Soyuz);
+            Rocket s = new(RocketType.Saturn);
+
+            List<int> to_mercury = new() { 3, 5, 3, 5, 2, 2 };
+            Spacecraft m = new(new List<Rocket> { j, j, j, a, a, y, y, y, y, y, y, y }, 1);
+
+            Console.WriteLine("To Mercury " + m + " can do: " + Evaluate(m, to_mercury, 0));
         }
 
         static bool Evaluate(Spacecraft s, List<int> maneuvers, int maneuver_index)
